@@ -10,8 +10,7 @@ const socket = io('http://localhost:5000', {
 	transports: ['websocket', 'polling']
 });
 
-socket.on('connection',()=>console.log("client connected"))
-class App extends React.PureComponent {
+class App extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -70,7 +69,6 @@ class App extends React.PureComponent {
 			const previousData = this.state.lineChart.datasets[0];
 			const newData = { ...previousData };
 			newData.data.push(price);
-			// console.log(moment().format());
 			const updatedLineChart = {...this.state.lineChart, datasets: [newData],
 				labels: this.state.lineChart.labels.concat(moment(Date(time)).format('hh:mm:ss a'))
 			};
